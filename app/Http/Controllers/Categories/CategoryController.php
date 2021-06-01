@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Categories;
 
-use App\Category;
+use App\Jobs\SendMailJob;
+use App\Mail\SuccessEmail;
+use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 
 class CategoryController extends Controller
 {
@@ -22,7 +26,9 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request)
     {
         $data = $request->validated();
-        Category::create($data);
+        $category = Category::create($data);
+        $job = (new SendMailJob($category))->delay(Carbon::now()->addSeconds(5));
+        dispatch($job);
         return redirect()->route('categories.index')->with('success' , 'category added successfully');
     }
 
@@ -40,7 +46,9 @@ class CategoryController extends Controller
     {
         $data = $request->validated();
         $category->update($data);
-        return redirect( )->route('categories.index')->with('success' , 'category updated successfully');
+        $job = (new SendMailJob($category))->delay(Carbon::now()->addSeconds(5));
+        dispatch($job);
+        return redirect()->route('categories.index')->with('success' , 'category updated successfully');
     }
 
     public function destroy(Category $category)

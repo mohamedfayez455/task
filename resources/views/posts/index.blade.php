@@ -10,7 +10,7 @@
                         <div class="col-md-6">
                             <h3 class="card-title">Show Posts Data</h3>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6  d-flex flex-row-reverse">
                             <a class="btn btn-primary" href="{{route('posts.create')}}"> <i class="fa fa-plus"></i> New Post</a>
                         </div>
                     </div>
@@ -23,6 +23,8 @@
                             <th style="width: 10px">#</th>
                             <th>Name</th>
                             <th>Description</th>
+                            <th>Category</th>
+                            <th>Photo</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -32,6 +34,10 @@
                                 <td>{{$post->id}}</td>
                                 <td>{{$post->name}}</td>
                                 <td>{{$post->description}}</td>
+                                <td>{{$post->category ? $post->category->name : ''}}</td>
+                                <td>
+                                    <img style="width:100px; height: 80px; " class="image-preview img-thumbnail" src=" {{asset('uploads/posts/'.$post->photo)}} " alt="">
+                                </td>
                                 <td>
                                     <div class="row">
                                         <a class="btn btn-info btn-sm m-2" href="{{route('posts.edit' , $post->id)}}"><i class="fa fa-edit fa-lg"></i></a>

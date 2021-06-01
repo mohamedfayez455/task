@@ -12,7 +12,7 @@
                         </div>
                         <!-- /.card-header -->
 
-                        <form  role="form" method="post" action="{{route('posts.update' , $post->id)}}" >
+                        <form  role="form" method="post" action="{{route('posts.update' , $post->id)}}" enctype="multipart/form-data">
                             @csrf
                             {{method_field('PUT')}}
                             <div class="card-body">
@@ -35,6 +35,39 @@
                                                         <textarea name="description" class="textarea" placeholder="Enter Description" id="description"
                                                               style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ $post->description }}
                                                         </textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group col-md-12 ">
+                                                    <label for="category">Category</label>
+                                                    <select id="category" name="category_id" class="form-control">
+                                                        <option value="">Select Category</option>
+                                                        @foreach($categories as $category)
+                                                            <option value="{{$category->id}}" {{$post->category_id == $category->id ? 'selected' : ''}}>{{$category->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <label for="photo">Photo</label>
+                                                    <div class="input-group">
+                                                        <div class="custom-file">
+                                                            <input type="file" id="photo" name="photo" class="custom-file-input image" >
+                                                            <label class="custom-file-label" for="photo">Choose Photo</label>
+                                                        </div>
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text" >Upload</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-md-2">
+                                                    <div class="images">
+                                                        <img style="width:200px; height: 120px; " class="image-preview img-thumbnail" src=" {{asset('uploads/posts/'.$post->photo)}} " alt="">
+                                                    </div>
                                                 </div>
                                             </div>
 

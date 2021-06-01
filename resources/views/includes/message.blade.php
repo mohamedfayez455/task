@@ -1,5 +1,3 @@
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-<script type="text/javascript" src="js/noty/packaged/jquery.noty.packaged.min.js"></script>
 @if (session('success'))
 
     <script>

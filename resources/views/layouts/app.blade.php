@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Task') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -18,14 +18,23 @@
     <script src="https://use.fontawesome.com/7077b7feb7.js"></script>
 
     <!-- Styles -->
+
+    <link rel="stylesheet" href="{{ asset('assets/plugins/noty/noty.css') }}">
+    <script src="{{ asset('assets/plugins/noty/noty.min.js') }}"></script>
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                <a class="navbar-brand" href="{{ route('categories.index') }}">
+                    Categories
+                </a>
+                <a class="navbar-brand" href="{{ route('posts.index') }}">
+                    Posts
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -77,5 +86,27 @@
             @yield('content')
         </main>
     </div>
+
+{{--    <script src="{{asset('js/jquery/jquery.min.js')}}"></script>--}}
+{{--    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>--}}
+    <script>
+        // $(".image").change(function () {
+        //     console.log("sss");
+        //
+        //     if (this.files && this.files[0]) {
+        //         var reader = new FileReader();
+        //
+        //         reader.onload = function (e) {
+        //             $('.image-preview').attr('src', e.target.result);
+        //         }
+        //
+        //         reader.readAsDataURL(this.files[0]);
+        //     }
+        //
+        // });
+
+    </script>
+    <script src="{{asset('js/image-preview.js')}}"></script>
+
 </body>
 </html>

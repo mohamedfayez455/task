@@ -10,7 +10,7 @@
                         <div class="col-md-6">
                             <h3 class="card-title">Show Categories Data</h3>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 d-flex flex-row-reverse">
                             <a class="btn btn-primary" href="{{route('categories.create')}}"> <i class="fa fa-plus"></i> New Category</a>
                         </div>
                     </div>
@@ -23,6 +23,8 @@
                             <th style="width: 10px">#</th>
                             <th>Name</th>
                             <th>Description</th>
+                            <th>Created At</th>
+                            <th>Updated At</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -32,6 +34,8 @@
                                 <td>{{$category->id}}</td>
                                 <td>{{$category->name}}</td>
                                 <td>{{$category->description}}</td>
+                                <td>{{\Carbon\Carbon::parse($category->created_at)->diffForHumans()}}</td>
+                                <td>{{\Carbon\Carbon::parse($category->updated_at)->diffForHumans()}}</td>
                                 <td>
                                     <div class="row">
                                         <a class="btn btn-info btn-sm m-2" href="{{route('categories.edit' , $category->id)}}"><i class="fa fa-edit fa-lg"></i></a>

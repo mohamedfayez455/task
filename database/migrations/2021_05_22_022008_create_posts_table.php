@@ -18,6 +18,8 @@ class CreatePostsTable extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('photo')->default('default.png');
+            $table->integer('category_id')->unsigned()->nullable();
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
             $table->timestamps();
         });
     }
